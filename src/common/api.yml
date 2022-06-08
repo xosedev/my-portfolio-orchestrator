@@ -1,0 +1,112 @@
+openapi: 3.0.1
+info:
+  title: XoseDev Portfolio Orchestrator
+  description:  XoseDev Portfolio Orchestrator
+  version: '1.0'
+  contact:
+    name: xose dev
+    email: xosedev@gmail.com
+servers:
+  - url: /api/v1
+tags:
+  - name: User
+    description: API User
+  - name: General
+    description: Utilities Service
+paths:
+  /healthcheck:
+    get:
+      operationId: healthcheck
+      summary: check service status.
+      description: check service status.
+      tags:
+        - General
+      responses:
+        200:
+          description: Returns an object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseHK'
+        404:
+          description: Not found
+          content: {}
+        500:
+          description: Internal server error
+          content: {}
+        default:
+          description: The resource you were trying to reach had an error.
+          content:
+            application/json:
+              schema:
+                type: string #test
+      x-codegen-request-body-name: body
+  /user/:
+    post:
+      tags:
+        - User
+      summary: Create User.
+      operationId: user post
+      requestBody:
+        description: user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: Returns an object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400Response'
+        500:
+          description: Internal server error
+          content: {}
+        default:
+          description: The resource you were trying to reach had an error.
+          content:
+            application/json:
+              schema:
+                type: string
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    ResponseHK:
+      type: object
+      properties:
+        status:
+          type: string
+          example: 200
+        enabled:
+          type: string
+          example: 'TRUE'
+    Error400Response:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Error getting the orchestrator
+        status:
+          type: string
+          example: 400
+        system:
+          type: string
+          example: orchestrator 
+    User:
+      description: User entity
+      properties:
+        name:
+          type: string
+          description: name of user
+          example: 'jhon doe'
+        email:
+          type: string
+          description: mail of user
+          example: 'user@corp.com'
