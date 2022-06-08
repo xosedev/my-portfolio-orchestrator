@@ -10,9 +10,7 @@ class UserAdapterUtils {
   }
 
   async createUser(
-    newUser: User,
-    country: string,
-    store: string
+    newUser: User
   ): Promise<any> {
     return axios
       .post(

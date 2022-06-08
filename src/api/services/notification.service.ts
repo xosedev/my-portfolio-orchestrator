@@ -5,17 +5,13 @@ import notificationAdapterUtils from '../utils/notificationAdapterUtils'
 class UserService {
 
   async createUser(
-    newUser: User,
-    country: string,
-    store: string
+    newUser: User
   ): Promise<GenericResponse> {
     const genericResponse: GenericResponse = {}
 
     try {
       const response = await notificationAdapterUtils.createUser(
-        newUser,
-        country,
-        store
+        newUser
       )
       genericResponse.data = response
     } catch (error) {
