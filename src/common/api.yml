@@ -7,7 +7,7 @@ info:
     name: xose dev
     email: xosedev@gmail.com
 servers:
-  - url: /api/v1
+  - url: /api/v3
 tags:
   - name: User
     description: API User
@@ -41,7 +41,7 @@ paths:
               schema:
                 type: string #test
       x-codegen-request-body-name: body
-  /user/:
+  /user:
     post:
       tags:
         - User
