@@ -7,3 +7,5 @@ s.mkdir(outDir);
 s.cp('.env', `${outDir}/.env`);
 s.mkdir('-p', `${outDir}/common/swagger`);
 s.cp('src/common/api.yml', `${outDir}/common/api.yml`);
+s.cp('src/keys/fullchain.pem', `${outDir}/keys/fullchain.pem`)
+s.cp('src/keys/privkey.pem', `${outDir}/keys/privkey.pem`)
