@@ -9,8 +9,8 @@ info:
 servers:
   - url: /api/v3
 tags:
-  - name: User
-    description: API User
+  - name: Mail
+    description: API Mail
   - name: General
     description: Utilities Service
 paths:
@@ -41,25 +41,25 @@ paths:
               schema:
                 type: string #test
       x-codegen-request-body-name: body
-  /user:
+  /mail/send-mail:
     post:
       tags:
-        - User
-      summary: Create User.
-      operationId: user post
+        - Mail
+      summary: Sen Mail.
+      operationId: Send Mail
       requestBody:
-        description: user
+        description: mail
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Mail'
       responses:
         200:
           description: Returns an object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/Mail'
         404:
           description: Not found
           content:
@@ -99,14 +99,30 @@ components:
         system:
           type: string
           example: orchestrator 
-    User:
-      description: User entity
+    Mail:
+      description: Mail entity
       properties:
-        name:
+        userName:
           type: string
-          description: name of user
-          example: 'jhon doe'
-        email:
+          description: name of Emisor
+          example: 'Jhon Doe'
+        from:
           type: string
-          description: mail of user
-          example: 'user@corp.com'
+          description: mail of emisor
+          example: 'test@corp.com'
+        to:
+          type: string
+          description: mail of receptor
+          example: 'test@corp.com'
+        subject:
+          type: string
+          description: subject to mail
+          example: 'subject test'
+        text:
+          type: string
+          description: text to mail
+          example: 'Test'
+        html:
+          type: string
+          description: html mail
+          example: '<div>Test</div>'

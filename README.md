@@ -63,3 +63,10 @@ or debug them
 ```shell
 npm run test:debug
 ```
+
+up:
+	docker-compose -f ./portfolio-orchestrator/docker-compose-local.yml up -d
+down:
+	docker-compose -f ./portfolio-orchestrator/docker-compose-local.yml down --rmi 'all'
+logs:
+	docker-compose -f ./portfolio-orchestrator/docker-compose-local.yml logs -f

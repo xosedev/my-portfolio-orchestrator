@@ -1,21 +1,21 @@
-import { User } from '../model/user.interface'
 import axios from 'axios'
-const apiEndpoint = process.env.API_ADAPTER
+import { Mail } from '../interfaces/mail.interface'
+const apiMailEndpoint = process.env.API_MAIL_ADAPTER
 
-class UserAdapterUtils {
+class MailAdapterUtils {
   private getHeaders() {
     return {
       'Content-type': 'application/json',
     }
   }
 
-  async createUser(
-    newUser: User
+  async sendMail(
+    mail: Mail
   ): Promise<any> {
     return axios
       .post(
-        `${apiEndpoint}/api/v1/user/`,
-        newUser,
+        `${apiMailEndpoint}/send-mail`,
+        mail,
         {
           headers: this.getHeaders()
         }
@@ -30,4 +30,4 @@ class UserAdapterUtils {
   }
 }
 
-export default new UserAdapterUtils()
+export default new MailAdapterUtils()

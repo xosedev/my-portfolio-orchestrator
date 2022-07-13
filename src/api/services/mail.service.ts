@@ -1,17 +1,20 @@
-import { User } from '../model/user.interface'
+
+import { Mail } from '../interfaces/mail.interface'
 import { GenericResponse } from '../interfaces/response.interface'
-import notificationAdapterUtils from '../utils/notificationAdapterUtils'
+import mailAdapterUtils from '../utils/mailAdapterUtils'
 
-class UserService {
+class MailService {
 
-  async createUser(
-    newUser: User
+  async sendMail(
+    mail: Mail
   ): Promise<GenericResponse> {
+    
+
     const genericResponse: GenericResponse = {}
 
     try {
-      const response = await notificationAdapterUtils.createUser(
-        newUser
+      const response = await mailAdapterUtils.sendMail(
+        mail
       )
       genericResponse.data = response
     } catch (error) {
@@ -23,8 +26,9 @@ class UserService {
     }
 
     return genericResponse
+    return genericResponse
   }
 }
 
-const userService = new UserService()
-export default userService
+const mailService = new MailService()
+export default mailService
